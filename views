@@ -1,24 +1,56 @@
+<html> 
+<head>
+ <title>Greeting Message</title> 
+ <style>
+#lbl {
+    font-family: monospace;
+    font-size: xx-large;
+    color: #626262;
+    padding: 5px;
+    border: 1px solid #ececec;
+    text-align: center;
+    line-height: 1.5;
+    height:85%
 
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="89" height="20">
- <linearGradient id="smooth" x2="0" y2="100%">
-   <stop offset="0" stop-color="#bbb" stop-opacity=".1"/>
-   <stop offset="1" stop-opacity=".1"/>
- </linearGradient>
+}
+#date{
+    font-size:large;
+}
+body{
+    background-color: aliceblue;
+}
+ </style>
+</head>
+<body>
+ <div id="lbl"></div>
+</body>
 
- <mask id="round">
-   <rect width="89" height="20" rx="3" ry="3" fill="#fff"/>
- </mask>
+<script>
+ var weekday = new Array(7);
+    weekday[0] = "Sunday";
+    weekday[1] = "Monday";
+    weekday[2] = "Tuesday";
+    weekday[3] = "Wednesday";
+    weekday[4] = "Thursday";
+    weekday[5] = "Friday";
+    weekday[6] = "Saturday";
 
- <g mask="url(#round)">
-   <rect width="30" height="20" fill="#555"/>
-   <rect x="30" width="59" height="20" fill="#79c83d"/>
-   <rect width="89" height="20" fill="url(#smooth)"/>
- </g>
+ 
+ var today = new Date();
+ var hrs = today.getHours();
+ var dayOfWeek = weekday[today.getDay()];
+ var date = dayOfWeek+" " + today.getDate() + "/" +(today.getMonth()+1) +'/'+today.getFullYear() ;
 
- <g fill="#fff" text-anchor="middle" font-family="Verdana,DejaVu Sans,Geneva,sans-serif" font-size="11"> 
-   <text x="16" y="15" fill="#010101" fill-opacity=".3">hits</text>
-   <text x="16" y="14" fill="#fff">hits</text>
-   <text x="58.5" y="15" fill="#010101" fill-opacity=".3"> 24 / 24 </text>
-   <text x="58.5" y="14" fill="#fff"> 24 / 24 </text>
- </g>
-</svg>
+ var greet;
+
+ if (hrs < 12)
+        greet = 'Good Morning  ';
+ else if (hrs >= 12 && hrs <= 17)
+        greet = 'Good Afternoon ';
+ else if (hrs >= 17 && hrs <= 24)
+        greet = 'Good Evening  ';
+
+    document.getElementById('lbl').innerHTML =
+        greet+=`<div id="date"> It's ${date}</div>`;
+</script> 
+</html>
